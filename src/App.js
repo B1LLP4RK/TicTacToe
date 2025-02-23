@@ -11,10 +11,19 @@ function Square({value, onSquareClick}) {
 
 export default function Board() {
   const [boardState, setBoardState] = useState(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(true);
   function handleClick(i) {
+    if (boardState[i] == "X" | boardState[i] == "O") {
+      return;
+    }
     const newBoardState = boardState.slice();
-    newBoardState[i] = "X";
+    if (xIsNext) {
+      newBoardState[i] = "X";
+    } else {
+      newBoardState[i] = "O";
+    }
     setBoardState(newBoardState);
+    setXIsNext(!xIsNext);
   }
   return (
     <>
@@ -35,4 +44,24 @@ export default function Board() {
       </div>
     </>
   );
+}
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let line of lines) {
+    const [a, b, c] = line;
+    if (squares[a] && squares[a] == squares[b] && squares[a] == squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
 }
