@@ -13,7 +13,7 @@ export default function Board() {
   const [boardState, setBoardState] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
   function handleClick(i) {
-    if (boardState[i] == "X" | boardState[i] == "O") {
+    if (boardState[i] == "X" || boardState[i] == "O") {
       return;
     }
     const newBoardState = boardState.slice();
