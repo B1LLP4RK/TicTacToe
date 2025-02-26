@@ -71,19 +71,36 @@ function calculateWinner(squares) {
 export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
-  const currentBoard = history[history.length -1];
+  const [view, setView] = useState(0);
+  const currentBoard = history[view];
   function handlePlay(boardState) {
     setXIsNext(!xIsNext);
-    setHistory([...history, boardState])
+    setHistory([...history.slice(0, view+1), boardState])
+    setView((i) => i+1);
 
   }
+  function jumpto(index) {
+    setXIsNext(index % 2 == 0);
+    setView(index);
+  }
+  const moves = history.map((boardState, index) => {
+    let description;
+    if (index == 0) {
+      description = 'go to game start';
+    } else {
+      description = 'go to move ' + index
+    }
+    
+
+    return <li key = {index}><button onClick={() => jumpto(index)}> {description} </button> </li> 
+  })
   return (
     <div className="game">
       <div className="game-board">
         <Board xIsNext = {xIsNext} boardState ={currentBoard} onPlay = {handlePlay}/>
       </div>
       <div className="game-info">
-        <ol> </ol>
+        <ol>{moves} </ol>
       </div>
     </div>
   );
