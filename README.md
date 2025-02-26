@@ -1,6 +1,6 @@
 # Tictactoe
 
-A simple react app to play tictactoe in your browser
+A simple react app to play tictactoe in your browser. From the following [tutorial](https://react.dev/learn/tutorial-tic-tac-toe)
 
 # How to use
 ```
