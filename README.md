@@ -9,4 +9,4 @@ cd react.dev
 npm start
 ```
 
-![]([https://github.com/Your_Repository_Name/Your_GIF_Name.gif](https://github.com/B1LLP4RK/TicTacToe/blob/main/screenshot.gif))
+![](https://github.com/B1LLP4RK/TicTacToe/blob/main/screenshot.gif)
