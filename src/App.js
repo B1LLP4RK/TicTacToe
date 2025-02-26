@@ -69,18 +69,16 @@ function calculateWinner(squares) {
 
 
 export default function Game() {
-  const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [view, setView] = useState(0);
   const currentBoard = history[view];
+  const xIsNext = view % 2 === 0;
   function handlePlay(boardState) {
-    setXIsNext(!xIsNext);
     setHistory([...history.slice(0, view+1), boardState])
     setView((i) => i+1);
 
   }
   function jumpto(index) {
-    setXIsNext(index % 2 == 0);
     setView(index);
   }
   const moves = history.map((boardState, index) => {
